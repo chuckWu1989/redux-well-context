@@ -1,0 +1,60 @@
+{
+  "name": "chuck-starterkit",
+  "version": "0.0.0",
+  "description": "Check Starter Kit",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/d9767192/awesome-connect.git"
+  },
+  "author": "Chuck Wu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/d9767192/chuck-starterkit/issues"
+  },
+  "homepage": "https://github.com/d9767192/chuck-starterkit#readme",
+  "dependencies": {
+    "react": "^15.6.2",
+    "react-dom": "^15.6.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.4.0",
+    "babel-preset-react": "^6.24.1",
+    "chalk": "^2.3.2",
+    "compression": "^1.7.2",
+    "css-loader": "^0.28.10",
+    "eslint": "^4.15.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-babel": "^4.1.2",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jest": "^21.6.2",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-react": "^7.7.0",
+    "express": "^4.14.0",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "figures": "^2.0.0",
+    "fs-extra": "^5.0.0",
+    "html-webpack-plugin": "^2.24.1",
+    "less-loader": "^4.1.0",
+    "optimist": "^0.6.1",
+    "postcss-loader": "^2.1.1",
+    "raw-loader": "^0.5.1",
+    "react-hot-loader": "^4.0.0",
+    "style-loader": "^0.20.3",
+    "url-loader": "^1.0.1",
+    "webpack": "^3.10.0",
+    "webpack-dev-middleware": "^3.0.1",
+    "webpack-hot-middleware": "^2.21.2"
+  }
+}
