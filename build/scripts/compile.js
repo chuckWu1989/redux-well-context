@@ -3,8 +3,9 @@ const path = require('../libs/path');
 const chalk = require('chalk');
 const webpack = require('webpack');
 const logger = require('../libs/logger');
-const webpackConfig = require('../webpack.config');
 const project = require('../../project.config');
+
+const webpackConfig = require(path.inProject(`build/${project.webpack}`));
 
 if (project.env === 'production') {
   fs.removeSync(path.inProject(project.outDir));

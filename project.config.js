@@ -84,4 +84,6 @@ module.exports = {
   copyFolders: [
     'assets',
   ],
+  /** webpack configuration file */
+  webpack: argv.config || 'webpack.config.js',
 };

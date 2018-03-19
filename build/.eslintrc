@@ -1,6 +1,7 @@
 {
   "extends" : "../.eslintrc",
   "rules": {
+    "import/no-dynamic-require": "off",
     "import/no-extraneous-dependencies": "off",
     "no-restricted-syntax": "off",
     "comma-dangle": "off",
