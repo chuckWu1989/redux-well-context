@@ -30,7 +30,8 @@
     "build:lib:cjs": "cross-env NODE_ENV=production node build/scripts/cjsPublisher.js",
     "build:lib:copy": "node build/scripts/copyFiles.js",
     "build:lib:umd": "webpack --config build/umd.webpack.config.js",
-    "release": "np --no-publish --any-branch"
+    "release": "np --no-publish --any-branch --no-cleanup",
+    "changelog": "auto-changelog --template keepachangelog"
   },
   "dependencies": {
     "react": "^15.6.2",
@@ -38,6 +39,7 @@
     "prop-types": "^15.5.10"
   },
   "devDependencies": {
+    "auto-changelog": "^1.4.6",
     "autoprefixer": "^7.2.5",
     "babel-core": "^6.24.1",
     "babel-eslint": "^8.1.1",
