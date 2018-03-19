@@ -1,49 +1,23 @@
 const path = require('./libs/path');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const project = require('../project.config');
 
-const DEV = project.env === 'development';
-const TEST = project.env === 'test';
-const PROD = project.env === 'production';
-
 const config = {
   entry: {
-    polyfill: [
-      project.polyfill,
-    ],
-    main: [
-      path.inProjectEntry(project.main),
-    ],
+    [project.libName]: path.inProjectEntry(project.main),
   },
   output: {
-    path: path.inProject(project.outDir),
-    filename: DEV ? '[name].js' : '[name].[chunkhash].js',
-    publicPath: project.publicPath,
+    path: path.inProject(`${project.libDir}/minify`),
+    filename: `${project.libName}.min.js`,
+    library: project.libName,
+    libraryTarget: 'umd',
+    umdNamedDefine: true,
   },
-  devtool: project.sourcemaps ? 'source-map' : false,
-  performance: { hints: false },
   module: {
     rules: [],
   },
-  resolve: {
-    modules: [
-      path.inProject(project.inDir),
-      'node_modules',
-    ],
-    extensions: ['*', '.js', '.jsx', '.json'],
-  },
-  externals: project.externals,
-  plugins: [
-    new webpack.DefinePlugin(Object.assign({
-      'process.env': { NODE_ENV: JSON.stringify(project.env) },
-      DEV,
-      TEST,
-      PROD,
-    }, project.globals)),
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-  ],
+  plugins: [],
 };
 
 // ------------------------------------
@@ -52,7 +26,19 @@ const config = {
 config.module.rules.push({
   test: /\.(js|jsx)$/,
   exclude: /node_modules/,
-  use: ['babel-loader'],
+  loader: 'babel-loader',
+  options: {
+    babelrc: false,
+    presets: [
+      ['env', { modules: false }],
+      'react'
+    ],
+    plugins: [
+      'syntax-dynamic-import',
+      ['transform-object-rest-spread', { useBuiltIns: true }],
+      ['transform-class-properties', { spec: true }]
+    ]
+  },
 });
 
 // ------------------------------------
@@ -72,7 +58,7 @@ if (!project.disableText) {
 const extractStyles = new ExtractTextPlugin({
   filename: 'styles/[name].[contenthash].css',
   allChunks: true,
-  disable: DEV,
+  disable: false,
 });
 const cssLoader = {
   loader: 'css-loader',
@@ -172,76 +158,28 @@ if (!project.disableFont) {
   }
 }
 
-// ------------------------------------
-// HTML
-// ------------------------------------
-if (!project.disableHtml) {
-  config.plugins.push(new HtmlWebpackPlugin({
-    template: path.inProjectEntry(project.htmlTemplate),
-    inject: true,
-    minify: {
-      collapseWhitespace: true,
+config.plugins.push(
+  new webpack.LoaderOptionsPlugin({
+    minimize: true,
+    debug: false,
+  }),
+  new webpack.optimize.UglifyJsPlugin({
+    sourceMap: false,
+    comments: false,
+    compress: {
+      warnings: false,
+      screw_ie8: true,
+      conditionals: true,
+      unused: true,
+      comparisons: true,
+      sequences: true,
+      dead_code: true,
+      evaluate: true,
+      if_return: true,
+      join_vars: true,
     },
-  }));
-}
-
-// ------------------------------------
-// Development Tools
-// ------------------------------------
-if (DEV) {
-  config.entry.main.unshift(
-    'react-hot-loader/patch',
-    `webpack-hot-middleware/client.js?path=${config.output.publicPath}__webpack_hmr`,
-    'webpack/hot/only-dev-server'
-  );
-  config.plugins.push(
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin(),
-    new webpack.NoEmitOnErrorsPlugin()
-  );
-}
-
-// ------------------------------------
-// Bundle Splitting
-// ------------------------------------
-if (!TEST) {
-  const bundles = ['polyfill', 'manifest'];
-  if (project.vendors && project.vendors.length) {
-    bundles.unshift('vendor');
-    config.entry.vendor = project.vendors;
-  }
-  config.plugins.push(new webpack.optimize.CommonsChunkPlugin({
-    names: bundles,
-    minChunks: Infinity,
-  }));
-}
-
-// ------------------------------------
-// Production Optimizations
-// ------------------------------------
-if (PROD) {
-  config.plugins.push(
-    new webpack.LoaderOptionsPlugin({
-      minimize: true,
-      debug: false,
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: false,
-      comments: false,
-      compress: {
-        warnings: false,
-        screw_ie8: true,
-        conditionals: true,
-        unused: true,
-        comparisons: true,
-        sequences: true,
-        dead_code: true,
-        evaluate: true,
-        if_return: true,
-        join_vars: true,
-      },
-    })
-  );
-}
+  })
+);
 
 module.exports = config;
+

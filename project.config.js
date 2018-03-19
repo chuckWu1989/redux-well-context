@@ -1,5 +1,6 @@
 /* eslint import/no-extraneous-dependencies: off */
-const { argv } = require('optimist').boolean('vendors');
+const { argv } = require('optimist');
+const pkg = require('./package.json');
 
 module.exports = {
   /** The environment to use when building the project */
@@ -18,10 +19,18 @@ module.exports = {
   reportDir: argv.reportdir || 'reports',
   /** The template of html. It will be used if the configuration of html is true */
   htmlTemplate: argv.template || 'index.html',
+  /** Global less file */
+  globalLess: argv.globalless || 'utils/style.less',
+  /** Library name */
+  libName: argv.libname || pkg.name,
+  /** The name of the library directory */
+  libDir: argv.libdir || 'lib',
   /** The port of the server */
   port: argv.port || 3000,
   /** The base path for all projects assets (relative to the website root) */
-  publicPath: argv.publicpath || '/',
+  publicPath: argv.publicpath || '',
+  /** The main file for publish */
+  publicMain: argv.publicmain || './index.js',
   /** Whether to generate sourcemaps */
   sourcemaps: argv.sourcemaps || false,
   /** A hash map of keys that the compiler should treat as external to the project */
@@ -63,9 +72,16 @@ module.exports = {
   vendors: [
     'react',
     'react-dom',
-    'redux',
-    'react-redux',
-    'redux-thunk',
-    'react-router',
-  ].concat(argv._),
+    'prop-types',
+  ],
+  /** Files to be copied into publish folder */
+  copyFiles: [
+    'README.md',
+    'CHANGELOG.md',
+    'LICENSE',
+  ],
+  /** Folders to be copied into publish folder */
+  copyFolders: [
+    'assets',
+  ],
 };

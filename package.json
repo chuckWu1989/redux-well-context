@@ -1,11 +1,8 @@
 {
   "name": "chuck-starterkit",
   "version": "0.0.0",
-  "description": "Check Starter Kit",
+  "description": "Chuck Starter Kit",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/d9767192/awesome-connect.git"
@@ -16,13 +13,34 @@
     "url": "https://github.com/d9767192/chuck-starterkit/issues"
   },
   "homepage": "https://github.com/d9767192/chuck-starterkit#readme",
+  "browserslist": [
+    "Last 2 versions"
+  ],
+  "scripts": {
+    "start": "cross-env NODE_ENV=development node build/scripts/start --sourcemaps --indir app",
+    "test": "npm run test:lint && npm run test:unit",
+    "test:unit": "cross-env NODE_ENV=test jest --config build/configs/jest.config.js",
+    "test:unit:watch": "npm run test:unit -- --watch",
+    "test:lint": "node build/scripts/eslint",
+    "test:lint:fix": "npm run test:lint -- --fixlint",
+    "test:lint:report": "npm run test:lint -- --outputlint",
+    "test:coverage": "npm run test:unit -- --coverage",
+    "build": "cross-env NODE_ENV=production node build/scripts/compile --indir app",
+    "build:lib": "rimraf lib && npm run build:lib:cjs && npm run build:lib:copy && npm run build:lib:umd",
+    "build:lib:cjs": "cross-env NODE_ENV=production node build/scripts/cjsPublisher.js",
+    "build:lib:copy": "node build/scripts/copyFiles.js",
+    "build:lib:umd": "webpack --config build/umd.webpack.config.js",
+    "release": "np --no-publish --any-branch"
+  },
   "dependencies": {
     "react": "^15.6.2",
-    "react-dom": "^15.6.2"
+    "react-dom": "^15.6.2",
+    "prop-types": "^15.5.10"
   },
   "devDependencies": {
+    "autoprefixer": "^7.2.5",
     "babel-core": "^6.24.1",
-    "babel-eslint": "^7.2.3",
+    "babel-eslint": "^8.1.1",
     "babel-loader": "^7.0.0",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
@@ -30,9 +48,13 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.4.0",
     "babel-preset-react": "^6.24.1",
-    "chalk": "^2.3.2",
-    "compression": "^1.7.2",
-    "css-loader": "^0.28.10",
+    "chalk": "^1.1.3",
+    "compression": "^1.6.2",
+    "cross-env": "^5.0.0",
+    "css-loader": "^0.28.1",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-15": "^1.0.5",
+    "enzyme-to-json": "^3.3.3",
     "eslint": "^4.15.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-babel": "^4.1.2",
@@ -40,21 +62,30 @@
     "eslint-plugin-jest": "^21.6.2",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-promise": "^3.6.0",
-    "eslint-plugin-react": "^7.7.0",
+    "eslint-plugin-react": "^7.5.1",
     "express": "^4.14.0",
     "extract-text-webpack-plugin": "^3.0.2",
     "figures": "^2.0.0",
-    "fs-extra": "^5.0.0",
+    "fs-extra": "^3.0.1",
     "html-webpack-plugin": "^2.24.1",
-    "less-loader": "^4.1.0",
+    "jest": "^22.1.4",
+    "less": "^2.7.2",
+    "less-loader": "^4.0.4",
+    "np": "^2.18.3",
     "optimist": "^0.6.1",
-    "postcss-loader": "^2.1.1",
+    "postcss-loader": "^2.0.10",
     "raw-loader": "^0.5.1",
-    "react-hot-loader": "^4.0.0",
-    "style-loader": "^0.20.3",
-    "url-loader": "^1.0.1",
+    "react-hot-loader": "^3.1.3",
+    "react-loadable": "^5.3.1",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-test-renderer": "^16.2.0",
+    "replace": "^0.3.0",
+    "rimraf": "^2.6.1",
+    "style-loader": "^0.17.0",
+    "url-loader": "^0.5.8",
     "webpack": "^3.10.0",
-    "webpack-dev-middleware": "^3.0.1",
-    "webpack-hot-middleware": "^2.21.2"
+    "webpack-dev-middleware": "^1.8.4",
+    "webpack-hot-middleware": "^2.13.2"
   }
 }

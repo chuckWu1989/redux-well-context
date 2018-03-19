@@ -1,1 +1,3 @@
-const data = 123;
+import Counter from './view/Counter';
+
+export default Counter;
