@@ -7,13 +7,12 @@
 
 *  👏 **Hot reloading**
 *  👏 **Code splitting**
-*  👏 **Redux devtool is supported**
 *  👏 **Integration with lint testing, unit testing and coverage testing**
 *  👏 **Integration with browser compatibility**
 *  👏 **Less and css is supported**
 *  👏 **Integration complex settings with one file**
 *  👏 **Nice flexibility for extension**
-*  👏 **Using modern plug-ins (React-router, React etc.)**
+*  👏 **Using modern plug-ins**
 
 ## Introduction
 
