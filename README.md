@@ -6,12 +6,11 @@
 ## Features
 
 *  👏 **Hot reloading**
-*  👏 **Scaffolding**
 *  👏 **Code splitting**
 *  👏 **Redux devtool is supported**
 *  👏 **Integration with lint testing, unit testing and coverage testing**
 *  👏 **Integration with browser compatibility**
-*  👏 **Multi style loader supported**
+*  👏 **Less and css is supported**
 *  👏 **Integration complex settings with one file**
 *  👏 **Nice flexibility for extension**
 *  👏 **Using modern plug-ins (React-router, React etc.)**
