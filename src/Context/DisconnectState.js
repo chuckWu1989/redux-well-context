@@ -3,30 +3,22 @@ class DisconnectState {
     this.context = context;
   }
   configuration(settings) {
-    const { model: ClientModel, operators: clientOperators } = settings;
-    if (ClientModel) {
-      this.context.Model = ClientModel;
-    }
-    if (clientOperators) {
-      this.context.operators = Object.assign(
-        this.context.operators,
-        clientOperators
-      );
-    }
-    this.context.innerState = this.context.configureState;
+    const { Entity, operators, configureState } = this.context;
+    const {
+      Entity: ClientEntity = Entity,
+      operators: clientOperators = {}
+    } = settings;
+    this.context.Entity = ClientEntity;
+    this.context.operators = Object.assign(operators, clientOperators);
+    this.context.innerState = configureState;
   }
   connect() {
-    this.context.db = this.context.getState();
-    this.context.innerState = this.context.connectState;
+    const { connectState, getState } = this.context;
+    this.context.db = getState();
+    this.context.innerState = connectState;
   }
   model() {
     throw new Error("You should connect database before assignment model");
-  }
-  create() {
-    throw new Error("You should connect database before create");
-  }
-  find() {
-    throw new Error("You should connect database before find");
   }
   disconnect() {
     throw new Error("You still not connect to database");

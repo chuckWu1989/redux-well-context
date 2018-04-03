@@ -5,67 +5,80 @@ import Immutable from "immutable";
 import thunk from "./thunk";
 import { Provider } from "react-redux";
 import rootReducer from "./reducers";
+import Layouts from './layouts';
+import Context from './Context';
 
 const initialState = Immutable.Map();
 const middleware = applyMiddleware(thunk);
 const store = createStore(rootReducer, initialState, middleware);
 
-// class Model {
-//   get data() {
-//     return this._data;
-//   }
-//   set data(payload) {
-//     this._data = payload;
-//   }
-//   get test() {
-//     return this._test;
-//   }
-//   set test(payload) {
-//     this._test = payload;
-//   }
-//   get test2() {
-//     return this._test2;
-//   }
-//   set test2(payload) {
-//     this._test2 = payload;
-//   }
-// }
+class Model {
+  constructor() {
+    Object.defineProperties(this, {
+      _data: {
+        writable: true,
+      },
+      _test: {
+        writable: true,
+      },
+      _test2: {
+        writable: true,
+      },
+      data: {
+        get: () => this._data,
+        set: (value) => this._data = value,
+        enumerable: true,
+        configurable: true,
+      },
+      test: {
+        get: () => this._test,
+        set: (value) => this._test = value,
+        enumerable: true,
+      },
+      test2: {
+        get: () => this._test2,
+        set: (value) => this._test2 = value,
+        enumerable: true,
+      }
+    })
+  }
+}
 
 // // condition 1
-// const context = new Context(store.dispatch, store.getState);
+const context = new Context(store.dispatch, store.getState);
 
-// context.connect();
+context.connect();
 
-// const entity = context.model(Model).create("test");
+const entity = context.model(Model).create("test");
 
-// entity.data = 123;
-// delete entity.data;
-// console.log("1. ", entity);
+entity.data = 123;
+delete entity.data;
+console.log("1. ", entity);
 
-// entity.data = 123;
-// entity.test = 456;
-// console.log("2. ", entity);
+entity.data = 123;
+entity.test = 456;
+console.log("2. ", entity);
 
-// entity.update();
-// entity.test2 = 789;
-// console.log("3. ", store.getState().getIn(["store", "test"]));
-// console.log("4. ", context.find("test"));
+entity.update();
+entity.test2 = 789;
+console.log("3. ", store.getState().getIn(["store", "test"]));
+console.log("4. ", entity.find("test"));
 
-// entity.update();
+entity.update();
 
-// context.disconnect();
+context.disconnect();
 
 // // condition 2
-// context.connect();
+context.connect();
 
-// const entity2 = context.find("test");
-// console.log("5. ", entity2);
+const entity2 = context.model(Model).find("test");
+console.log("5. ", entity2);
 
-// context.disconnect();
+context.disconnect();
 
 const App = () => (
   <Provider store={store}>
-    <div />
+    <Layouts />
   </Provider>
 );
 

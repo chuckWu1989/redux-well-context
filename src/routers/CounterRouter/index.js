@@ -1,9 +1,10 @@
 import { connect } from "react-redux";
 import Counter from "../../views/Counter";
+import query from "../../query";
 import { onIncrease, onDecrease } from "../../controllers/CounterController";
 
 const mapStateToProps = (state, props) => ({
-  times: state.getIn(["store", props.name, "times"])
+  times: query(state).withId(props.name).get("times"),
 });
 const mapDispatchToProps = (dispatch, props) => ({
   onIncrease: () => dispatch(onIncrease(props)),

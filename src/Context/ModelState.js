@@ -13,25 +13,20 @@ class ModelState {
     );
   }
   model(Model) {
-    this.context.dataModel = Model;
-    this.context.innerState = this.context.modelState;
-  }
-  create(id) {
-    const { db, dispatch, operators, dataModel } = this.context;
-    this.context.innerState = this.context.createState;
-    const obj = new this.context.Model(db, dispatch, dataModel, operators);
-    return obj.create(id);
-  }
-  find(id) {
-    const { db, dispatch, operators, dataModel } = this.context;
-    this.context.innerState = this.context.findState;
-    const obj = new this.context.Model(db, dispatch, dataModel, operators);
-    return obj.find(id);
+    const {
+      db,
+      dispatch,
+      operators,
+      Entity,
+      modelState
+    } = this.context;
+    this.context.innerState = modelState;
+    return new Entity(db, dispatch, Model, operators);
   }
   disconnect() {
+    const { disconnectState } = this.context;
     this.context.db = undefined;
-    this.context.dataModel = () => ({});
-    this.context.innerState = this.context.disconnectState;
+    this.context.innerState = disconnectState;
   }
 }
 

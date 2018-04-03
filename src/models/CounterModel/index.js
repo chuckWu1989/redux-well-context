@@ -1,12 +1,21 @@
 class CounterModel {
   constructor() {
-    this._times = 0;
-  }
-  get times() {
-    return this._times;
-  }
-  set times(data) {
-    this._times = data;
+    Object.defineProperties(this, {
+      _times: {
+        value: 0,
+        writable: true,
+      },
+      times: {
+        get: () => this._times,
+        set: (value) => {
+          if (value > 10) {
+            throw new Error('Exceed 10!');
+          }
+          this._times = value;
+        },
+        enumerable: true,
+      }
+    })
   }
 }
 
