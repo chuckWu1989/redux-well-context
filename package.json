@@ -4,7 +4,7 @@
   "description": "",
   "keywords": [],
   "homepage": "https://codesandbox.io/s/new",
-  "main": "src/index.js",
+  "main": "app/index.js",
   "dependencies": {
     "core-decorators": "0.20.0",
     "immutable": "4.0.0-rc.9",

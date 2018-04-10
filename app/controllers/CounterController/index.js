@@ -1,6 +1,6 @@
 import CounterModel from "../../models/CounterModel";
 
-export const onIncrease = props => context => {
+export const onIncrease = props => (dispatch, getState, context) => {
   const { name } = props;
   context.connect();
   const entity =
@@ -10,7 +10,7 @@ export const onIncrease = props => context => {
   entity.update();
   context.disconnect();
 };
-export const onDecrease = props => context => {
+export const onDecrease = props => (dispatch, getState, context) => {
   const { name } = props;
   context.connect();
   const entity =

@@ -5,7 +5,7 @@ export default ({ dispatch, getState }) => (
     (action) => {
       if (typeof action === 'function') {
         const context = new Context(dispatch, getState);
-        return action(context);
+        return action(dispatch, getState, context);
       }
       return next(action);
     }
