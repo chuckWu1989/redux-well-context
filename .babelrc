@@ -1,0 +1,19 @@
+{
+  "presets": [
+    ["env", { "modules": false }]
+  ],
+  "env": {
+    "test": {
+      "presets": ["env"],
+      "plugins": [
+        ["transform-class-properties", { "spec": true }]
+      ]
+    }
+  },
+  "plugins": [
+    "syntax-dynamic-import",
+    "transform-es2015-modules-commonjs",
+    ["transform-object-rest-spread", { "useBuiltIns": true }],
+    ["transform-class-properties", { "spec": true }]
+  ]
+}

@@ -1,10 +1,10 @@
-import { create, find, update, del } from "../Entity/operators";
-import Entity from "../Entity";
-import ConfigureState from "./ConfigureState";
-import ConnectState from "./ConnectState";
-import ModelState from "./ModelState";
-import InstanceState from "./InstanceState";
-import DisconnectState from "./DisconnectState";
+import { create, find, update, del } from '../Entity/operators';
+import Entity from '../Entity';
+import ConfigureState from './ConfigureState';
+import ConnectState from './ConnectState';
+import ModelState from './ModelState';
+import InstanceState from './InstanceState';
+import DisconnectState from './DisconnectState';
 
 class Context {
   constructor(dispatch, getState) {
@@ -22,7 +22,7 @@ class Context {
       create,
       find,
       update,
-      delete: del
+      delete: del,
     };
     return this;
   }

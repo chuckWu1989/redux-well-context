@@ -3,14 +3,10 @@ class ModelState {
     this.context = context;
   }
   configuration() {
-    throw new Error(
-      "Context already connected, please disconnect before configuration"
-    );
+    throw new Error('Context already connected, please disconnect before configuration');
   }
   connect() {
-    throw new Error(
-      "Context already connected, please disconnect before reconnect"
-    );
+    throw new Error('Context already connected, please disconnect before reconnect');
   }
   model(Model) {
     const {
@@ -18,7 +14,7 @@ class ModelState {
       dispatch,
       operators,
       Entity,
-      modelState
+      modelState,
     } = this.context;
     this.context.innerState = modelState;
     return new Entity(db, dispatch, Model, operators);

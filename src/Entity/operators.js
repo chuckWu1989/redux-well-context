@@ -1,7 +1,7 @@
-import { createAction } from "redux-actions";
-import Immutable from "immutable";
-import uuidv4 from "uuid/v4";
-import { UPDATE, DELETE } from "../constants/ActionTypes";
+import { createAction } from 'redux-actions';
+import Immutable from 'immutable';
+import uuidv4 from 'uuid/v4';
+import { UPDATE, DELETE } from '../constants/ActionTypes';
 
 const updateAction = createAction(UPDATE);
 const deleteAction = createAction(DELETE);
@@ -10,7 +10,7 @@ function setData(data) {
   try {
     data.forEach((value, key) => {
       this[key] = value;
-    })
+    });
   } catch (e) {
     throw e;
   }
@@ -24,7 +24,7 @@ function getData() {
 }
 function create(id = uuidv4()) {
   if (this.state.get(id) !== undefined) {
-    throw new Error("The id already existed!");
+    throw new Error('The id already existed!');
   }
   this.id = id;
   return this;

@@ -1,9 +1,9 @@
 function Entity(state, dispatch, Model, operator) {
-  if (typeof Model !== "function") {
-    throw new Error("Model must be a class");
+  if (typeof Model !== 'function') {
+    throw new Error('Model must be a class');
   }
-  if (typeof operator !== "object" || operator === null) {
-    throw new Error("operator must be an non-null object");
+  if (typeof operator !== 'object' || operator === null) {
+    throw new Error('operator must be an non-null object');
   }
   class EntityModel extends Model {
     constructor() {
@@ -11,18 +11,18 @@ function Entity(state, dispatch, Model, operator) {
       Object.defineProperties(this, {
         id: {
           value: undefined,
-          writable: true
+          writable: true,
         },
         state: {
-          value: state.get("store")
+          value: state.get('store'),
         },
         dispatch: {
-          value: dispatch
-        }
+          value: dispatch,
+        },
       });
-      Object.keys(operator).forEach(key => {
+      Object.keys(operator).forEach((key) => {
         Object.defineProperty(this, key, {
-          value: operator[key]
+          value: operator[key],
         });
       });
     }
