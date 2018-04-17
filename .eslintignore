@@ -3,4 +3,5 @@ dist/**
 src/index.html
 reports/**
 lib/**
-app/**
+app/node_modules/**
+app/src/lib/**

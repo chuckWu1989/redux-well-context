@@ -1,8 +1,10 @@
-import Context from './Context';
-import Entity from './Entity';
-import * as operators from './Entity/operators';
+import Context from './context';
+import Entity from './entity';
+import * as operators from './entity/operators';
 import query from './query';
 import thunk from './thunk';
-import rootReducer from './reducers';
+import combineReducers from './reducers';
+import createStore from './createStore';
 
-export { Context, Entity, operators, query, thunk, rootReducer };
+export { Context, Entity, operators, query, thunk, combineReducers, createStore };
+export default createStore;

@@ -1,5 +1,5 @@
-import { create, find, update, del } from '../Entity/operators';
-import Entity from '../Entity';
+import { create, find, update, del } from '../entity/operators';
+import Entity from '../entity';
 import ConfigureState from './ConfigureState';
 import ConnectState from './ConnectState';
 import ModelState from './ModelState';

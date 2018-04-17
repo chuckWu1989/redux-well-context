@@ -1,8 +1,15 @@
 import Immutable from 'immutable';
+import STORENAME from '../constants/Config';
 
 const query = state => ({
   withId: (id) => {
-    const result = state.getIn(['store', id]);
+    let result;
+    if (Immutable.isImmutable(state)) {
+      result = state.getIn([STORENAME, id]);
+    } else {
+      const { store } = state;
+      result = store.get(id);
+    }
     return result === undefined ? Immutable.Map({}) : result;
   },
 });

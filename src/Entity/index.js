@@ -1,3 +1,6 @@
+import Immutable from 'immutable';
+import STORENAME from '../constants/Config';
+
 function Entity(state, dispatch, Model, operator) {
   if (typeof Model !== 'function') {
     throw new Error('Model must be a class');
@@ -14,7 +17,7 @@ function Entity(state, dispatch, Model, operator) {
           writable: true,
         },
         state: {
-          value: state.get('store'),
+          value: Immutable.isImmutable(state) ? state.get(STORENAME) : state[STORENAME],
         },
         dispatch: {
           value: dispatch,

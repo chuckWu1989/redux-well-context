@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
-import { query } from 'redux-well-context';
-import Counter from '../../views/Counter';
-import { onIncrease, onDecrease } from '../../controllers/CounterController';
+import { query } from '../../lib';
+import Counter from '../view';
+import { onIncrease, onDecrease } from '../controller';
 
 const mapStateToProps = (state, props) => ({
   times: query(state).withId(props.name).get('times'),

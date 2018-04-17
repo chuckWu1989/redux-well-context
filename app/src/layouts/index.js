@@ -1,6 +1,6 @@
 import React from 'react';
-import Counter from '../routers/CounterRouter';
+import TodoList from '../TodoList';
 
-const App = () => <Counter name="counter" />;
+const App = () => <TodoList name="counter" />;
 
 export default App;
