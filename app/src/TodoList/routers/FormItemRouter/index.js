@@ -4,7 +4,7 @@ import { onSubmit, onChange } from '../../controllers/FormItemController';
 import { query } from '../../../lib';
 
 const mapStateToProps = state => ({
-  value: query(state).withId('todolist').get('value'),
+  value: query(state).mapping('mydb', 'todolist').get('value'),
 });
 const mapDispatchToProps = dispatch => ({
   onSubmit: e => dispatch(onSubmit(e)),

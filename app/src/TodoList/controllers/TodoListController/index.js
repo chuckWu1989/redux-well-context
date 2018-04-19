@@ -1,10 +1,12 @@
+import MappingModel from '../../models/MappingModel';
 import TodoListModel from '../../models/TodoListModel';
 import { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED } from '../../constants/Config';
 
 export const toggleTodo = id => (
   (dispatch, getState, context) => {
     context.connect();
-    const entity = context.model(TodoListModel).find('todolist');
+    const table = context.model(MappingModel).find('mydb');
+    const entity = table.mapping('todolist', TodoListModel);
     if (entity) {
       entity.list = entity.list.update(
         entity.list.findIndex(todo => todo.id === id),

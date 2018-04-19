@@ -3,7 +3,9 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.del = exports.update = exports.find = exports.create = undefined;
+exports.mapping = exports.join = exports.createIfNotExist = exports.del = exports.update = exports.find = exports.create = undefined;
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var _reduxActions = require('redux-actions');
 
@@ -40,6 +42,7 @@ function getData() {
   Object.keys(this).forEach(function (key) {
     data[key] = _this2[key];
   });
+  data.indices = this.indices;
   return _immutable2.default.Map(data);
 }
 function create() {
@@ -66,9 +69,35 @@ function update() {
   var payload = getData.call(this);
   this.dispatch(updateAction({ id: id, payload: payload }));
 }
+function createIfNotExist(id) {
+  return this.find(id) || this.create(id);
+}
+function join(target, prop) {
+  if ((typeof target === 'undefined' ? 'undefined' : _typeof(target)) !== 'object' || target === null || typeof prop !== 'string') {
+    throw new Error('TypeError: target must be an entity and prop must be string');
+  }
+  var id = target.id;
+
+  this[prop] = id;
+  this.indices.push(id);
+  return this;
+}
+function mapping(prop, Model) {
+  var context = this.context,
+      id = this[prop];
+
+  return context.model(Model).find(id);
+}
 function del() {
+  var _this3 = this;
+
   var id = this.id;
 
+  this.indices.forEach(function (value) {
+    if (_this3.state.get(value) !== undefined) {
+      throw new Error('Fail to delete entity. You should delte join table before deleting entity.');
+    }
+  });
   this.dispatch(deleteAction({ id: id }));
 }
 
@@ -76,3 +105,6 @@ exports.create = create;
 exports.find = find;
 exports.update = update;
 exports.del = del;
+exports.createIfNotExist = createIfNotExist;
+exports.join = join;
+exports.mapping = mapping;

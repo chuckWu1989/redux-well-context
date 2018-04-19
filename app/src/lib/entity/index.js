@@ -8,8 +8,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var _immutable = require('immutable');
 
-var _immutable2 = _interopRequireDefault(_immutable);
-
 var _Config = require('../constants/Config');
 
 var _Config2 = _interopRequireDefault(_Config);
@@ -22,7 +20,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-function Entity(state, dispatch, Model, operator) {
+function Entity(state, dispatch, Model, operator, context) {
   if (typeof Model !== 'function') {
     throw new Error('Model must be a class');
   }
@@ -44,10 +42,17 @@ function Entity(state, dispatch, Model, operator) {
           writable: true
         },
         state: {
-          value: _immutable2.default.isImmutable(state) ? state.get(_Config2.default) : state[_Config2.default]
+          value: (0, _immutable.isImmutable)(state) ? state.get(_Config2.default) : state[_Config2.default]
         },
         dispatch: {
           value: dispatch
+        },
+        indices: {
+          value: (0, _immutable.List)(),
+          writable: true
+        },
+        context: {
+          value: context
         }
       });
       Object.keys(operator).forEach(function (key) {

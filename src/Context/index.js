@@ -1,4 +1,4 @@
-import { create, find, update, del } from '../entity/operators';
+import * as operators from '../entity/operators';
 import Entity from '../entity';
 import ConfigureState from './ConfigureState';
 import ConnectState from './ConnectState';
@@ -18,12 +18,7 @@ class Context {
     this.disconnectState = new DisconnectState(this);
     this.innerState = this.instanceState;
     this.Entity = Entity;
-    this.operators = {
-      create,
-      find,
-      update,
-      delete: del,
-    };
+    this.operators = operators;
     return this;
   }
   configuration(settings) {

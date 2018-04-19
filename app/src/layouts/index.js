@@ -1,6 +1,6 @@
 import React from 'react';
-import TodoList from '../TodoList';
+import ShoppingCart from '../ShoppingCart';
 
-const App = () => <TodoList name="counter" />;
+const App = () => <ShoppingCart name="counter" />;
 
 export default App;

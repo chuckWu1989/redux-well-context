@@ -61,3 +61,5 @@ typings/
 #.vscode
 .vscode
 
+#lib
+lib

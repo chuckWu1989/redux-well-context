@@ -1,12 +1,13 @@
+import MappingModel from '../../models/MappingModel';
 import TodoListModel from '../../models/TodoListModel';
 import TodoModel from '../../models/TodoModel';
 
 export const onSubmit = e => (
   (dispatch, getState, context) => {
     context.connect();
-    const entity = context.model(TodoListModel).find('todolist');
+    const table = context.model(MappingModel).createIfNotExist('mydb');
+    const entity = table.mapping('todolist', TodoListModel);
     if (entity && !entity.isValueEmpty()) {
-      const { value } = entity;
       const todo = new TodoModel(entity.current, entity.value, false);
       entity.list = entity.list.push(todo);
       entity.value = '';
@@ -19,9 +20,12 @@ export const onSubmit = e => (
 export const onChange = e => (
   (dispatch, getSTate, context) => {
     context.connect();
-    const entity =
-      context.model(TodoListModel).find('todolist') ||
-      context.model(TodoListModel).create('todolist');
+    const table = context.model(MappingModel).createIfNotExist('mydb');
+    let entity = table.mapping('todolist', TodoListModel);
+    if (!entity) {
+      entity = context.model(TodoListModel).create();
+      table.join(entity, 'todolist').update();
+    }
     entity.value = e.target.value;
     entity.update();
     context.disconnect();

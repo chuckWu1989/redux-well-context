@@ -8,6 +8,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _operators = require('../entity/operators');
 
+var operators = _interopRequireWildcard(_operators);
+
 var _entity = require('../entity');
 
 var _entity2 = _interopRequireDefault(_entity);
@@ -34,6 +36,8 @@ var _DisconnectState2 = _interopRequireDefault(_DisconnectState);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Context = function () {
@@ -50,12 +54,7 @@ var Context = function () {
     this.disconnectState = new _DisconnectState2.default(this);
     this.innerState = this.instanceState;
     this.Entity = _entity2.default;
-    this.operators = {
-      create: _operators.create,
-      find: _operators.find,
-      update: _operators.update,
-      delete: _operators.del
-    };
+    this.operators = operators;
     return this;
   }
 

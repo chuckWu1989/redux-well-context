@@ -17,7 +17,7 @@ class ModelState {
       modelState,
     } = this.context;
     this.context.innerState = modelState;
-    return new Entity(db, dispatch, Model, operators);
+    return new Entity(db, dispatch, Model, operators, this);
   }
   disconnect() {
     const { disconnectState } = this.context;

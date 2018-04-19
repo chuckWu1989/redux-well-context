@@ -36,7 +36,7 @@ var ConnectState = function () {
           modelState = _context.modelState;
 
       this.context.innerState = modelState;
-      return new Entity(db, dispatch, Model, operators);
+      return new Entity(db, dispatch, Model, operators, this);
     }
   }, {
     key: 'disconnect',

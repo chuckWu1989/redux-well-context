@@ -4,8 +4,8 @@ import TodoList from '../../views/TodoList';
 import { toggleTodo, visibilityFilter } from '../../controllers/TodoListController';
 
 const mapStateToProps = state => ({
-  todos: query(state).withId('todolist').get('list'),
-  active: query(state).withId('link').get('active'),
+  todos: query(state).mapping('mydb', 'todolist').get('list'),
+  active: query(state).mapping('mydb', 'link').get('active'),
 });
 const mapDispatchToProps = dispatch => ({
   toggleTodo: id => dispatch(toggleTodo(id)),

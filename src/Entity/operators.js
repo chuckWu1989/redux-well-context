@@ -20,6 +20,7 @@ function getData() {
   Object.keys(this).forEach((key) => {
     data[key] = this[key];
   });
+  data.indices = this.indices;
   return Immutable.Map(data);
 }
 function create(id = uuidv4()) {
@@ -43,9 +44,30 @@ function update() {
   const payload = getData.call(this);
   this.dispatch(updateAction({ id, payload }));
 }
+function createIfNotExist(id) {
+  return this.find(id) || this.create(id);
+}
+function join(target, prop) {
+  if (typeof target !== 'object' || target === null || typeof prop !== 'string') {
+    throw new Error('TypeError: target must be an entity and prop must be string');
+  }
+  const { id } = target;
+  this[prop] = id;
+  this.indices.push(id);
+  return this;
+}
+function mapping(prop, Model) {
+  const { context, [prop]: id } = this;
+  return context.model(Model).find(id);
+}
 function del() {
   const { id } = this;
+  this.indices.forEach((value) => {
+    if (this.state.get(value) !== undefined) {
+      throw new Error('Fail to delete entity. You should delte join table before deleting entity.');
+    }
+  });
   this.dispatch(deleteAction({ id }));
 }
 
-export { create, find, update, del };
+export { create, find, update, del, createIfNotExist, join, mapping };
