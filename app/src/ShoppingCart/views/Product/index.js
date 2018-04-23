@@ -14,3 +14,5 @@ Product.propTypes = {
   price: PropTypes.number.isRequired,
   quantity: PropTypes.number,
 };
+
+export default Product;

@@ -6,11 +6,11 @@ import ProductItem from '../../routers/ProductItemRouter';
 const Products = props => (
   <ProductList title="Products">
     {
-      props.getVisibleProducts(props.products).map(product => (
+      props.products.map(product => (
         <ProductItem
           key={product.id}
           product={product}
-          onAddToCartClicked={() => props.addToCart(props.product.id)}
+          onAddToCartClicked={() => props.addToCart(product.id)}
         />
       ))
     }
@@ -24,7 +24,6 @@ Products.propTypes = {
     inventory: PropTypes.number.isRequired,
   })),
   addToCart: PropTypes.func.isRequired,
-  getVisibleProducts: PropTypes.func.isRequired,
 };
 
 export default Products;

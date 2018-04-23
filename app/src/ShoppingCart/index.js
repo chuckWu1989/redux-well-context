@@ -1,3 +1,3 @@
-import App from './views/App';
+import App from './routers/AppRouter';
 
 export default App;
