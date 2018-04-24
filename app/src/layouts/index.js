@@ -1,6 +1,6 @@
 import React from 'react';
-import ShoppingCart from '../ShoppingCart';
+import AsyncExample from '../AsyncExample';
 
-const App = () => <ShoppingCart name="counter" />;
+const App = () => <AsyncExample name="counter" />;
 
 export default App;

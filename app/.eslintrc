@@ -2,6 +2,7 @@
   "extends" : "../.eslintrc",
   "rules": {
     "no-underscore-dangle": "off",
-    "no-unused-vars": "off"
+    "no-unused-vars": "off",
+    "no-nested-ternary": "off"
   }
 }
