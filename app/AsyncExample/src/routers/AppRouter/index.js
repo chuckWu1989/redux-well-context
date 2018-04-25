@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { query } from '../../../lib';
+import { query } from 'redux-well-context';
 import App from '../../views/App';
 import { initialize, fetchPostsIfNeeded, receiveProps, selectSubreddit, getPostInformation, handleRefreshClick, dispose } from '../../controllers/AppController';
 
