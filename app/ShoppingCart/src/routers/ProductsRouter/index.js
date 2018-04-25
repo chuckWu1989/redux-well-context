@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { query } from '../../../lib';
+import { query } from 'redux-well-context';
 import Products from '../../views/Products';
 import { addToCart, getVisibleProducts } from '../../controllers/ProductsController';
 

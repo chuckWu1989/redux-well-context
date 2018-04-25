@@ -1,0 +1,21 @@
+{
+  "name": "simple-case-example",
+  "version": "0.0.1",
+  "description": "Redux-well-context simple case example",
+  "main": "index.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "immutable": "^4.0.0-rc.9",
+    "prop-types": "^15.6.1",
+    "react": "16.2.0",
+    "react-dom": "16.2.0",
+    "react-redux": "5.0.7",
+    "react-scripts": "1.1.0",
+    "redux-well-context": "^0.1.1"
+  }
+}

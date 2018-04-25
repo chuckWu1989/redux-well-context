@@ -1,5 +1,5 @@
 import React from 'react';
-import createStore, { Context, query } from '../lib';
+import createStore, { Context, query } from 'redux-well-context';
 
 const collections = [];
 
