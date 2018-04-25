@@ -1,7 +1,3 @@
 node_modules/**
-dist/**
-src/index.html
 reports/**
 lib/**
-app/node_modules/**
-app/src/lib/**
