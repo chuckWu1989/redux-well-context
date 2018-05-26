@@ -3,6 +3,8 @@
   "rules": {
     "no-underscore-dangle": "off",
     "no-unused-vars": "off",
-    "no-nested-ternary": "off"
+    "no-nested-ternary": "off",
+    "no-param-reassign": "off",
+    "function-paren-newline": "off"
   }
 }

@@ -1,0 +1,25 @@
+{
+  "name": "real-world-case",
+  "version": "0.0.1",
+  "description": "Redux-well-context real world case",
+  "main": "index.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "humps": "^2.0.1",
+    "immutable": "^4.0.0-rc.9",
+    "lodash": "^4.17.10",
+    "normalizr": "^3.2.4",
+    "prop-types": "^15.6.1",
+    "react": "16.2.0",
+    "react-dom": "16.2.0",
+    "react-redux": "5.0.7",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.1.0",
+    "redux-well-context": "^0.1.1"
+  }
+}
